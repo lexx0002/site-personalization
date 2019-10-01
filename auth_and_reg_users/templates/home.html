@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="header">Прекрасный сайт на Django</h2>
+            Привет, <b>{% if user.is_authenticated %}{{ user.username }}{% else %}гость{% endif %}</b>.
+            <br>
+            {% if user.is_authenticated %}
+            Ты можешь 
+            <a href="{% url 'signup' %}">зарегистрировать нового пользователя</a>, 
+            <a href="{% url 'login' %}">авторизоваться как другой пользователь</a> или
+            <a href="{% url 'logout' %}">выйти</a>.
+            {% else %}
+            Пожалуйста, <a href="/signup">зарегистрируйся</a> или <a href="/login">авторизуйся</a>!
+            {% endif %}
+    </div>
+{% endblock %}

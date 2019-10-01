@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Статья номер {{ article.pk }}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="header">
+            <h3>{{ article.title }}</h3>
+        </div>
+        
+        {% if article.is_paid_content and not current_user.is_paid_user%}
+
+            <div class="article">
+                <p>Это платная статья. <a href="{% url 'subscription' %}">Купите</a> подписку</p>
+            </div>
+
+        {% else %}
+
+            <div class="article">
+                <img src="{% get_media_prefix %}{{ article.img }}">
+                <p>{{ article.text }}</p>
+            </div>
+            
+        {% endif %}
+
+        <a href="{% url 'main_list' %}"><button type="button" class="btn btn-info">Назад</button></a>
+    </div>
+    
+{% endblock %}

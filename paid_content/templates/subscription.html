@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Подпишитесь на журнал{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="header">
+            <h1>Подписка не стоит ничего</h1>
+        </div>
+        <div class="subscription">
+            <a href="{% url 'subscription' %}?subscribe_toggle=True">
+                <button type="button" class="btn btn-primary btn-lg btn-block">
+                    {% if current_user.is_paid_user %}Отписаться{% else %}Подписаться{% endif %}
+                </button>
+            </a>
+        </div>
+        <br>
+        <a href="{% url 'main_list' %}"><button type="button" class="btn btn-info">Назад</button></a>
+    </div>
+    
+{% endblock %}
